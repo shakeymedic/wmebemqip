@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive QIP Guide: HALO (High Acuity, Low Occurrence) Procedures Trolley</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+        .tab-button.active {
+            border-color: #4f46e5;
+            color: #4f46e5;
+            background-color: #eef2ff;
+        }
+        .step-circle {
+            transition: all 0.3s ease;
+        }
+        .step-circle.active {
+            background-color: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+        .step-line {
+            transition: all 0.3s ease;
+        }
+        .step-line.active {
+            background-color: #4f46e5;
+        }
+        textarea {
+            resize: vertical;
+        }
+        .info-box {
+            background-color: #eef2ff;
+            border-left: 4px solid #6366f1;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+        }
+        .guide-text {
+            font-size: 0.875rem; /* text-sm */
+            color: #6b7280; /* text-gray-500 */
+            margin-top: 0.5rem; /* mt-2 */
+            padding-left: 0.25rem;
+        }
+        .portfolio-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-gray-900">In-Depth Interactive QIP Guide</h1>
+            <p class="text-lg text-gray-600 mt-2">Developing a HALO (High Acuity, Low Occurrence) Procedures Trolley</p>
+        </header>
+
+        <!-- Main Navigation -->
+        <nav class="flex justify-center border-b border-gray-200 mb-8 sticky top-0 bg-gray-50 z-10">
+            <button onclick="showPage('page1')" class="nav-button py-4 px-6 text-lg font-medium text-gray-500 hover:text-indigo-600 focus:outline-none">1. Setup & Analysis</button>
+            <button onclick="showPage('page2')" class="nav-button py-4 px-6 text-lg font-medium text-gray-500 hover:text-indigo-600 focus:outline-none">2. PDSA Cycle</button>
+            <button onclick="showPage('page3')" class="nav-button py-4 px-6 text-lg font-medium text-gray-500 hover:text-indigo-600 focus:outline-none">3. Change & Dissemination</button>
+            <button onclick="showPage('page4')" class="nav-button py-4 px-6 text-lg font-medium text-gray-500 hover:text-indigo-600 focus:outline-none">4. Resources & Timeline</button>
+        </nav>
+
+        <main>
+            <!-- Page 1: Project Setup & Analysis -->
+            <div id="page1" class="page">
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-900">1. Project Setup & Initial Analysis</h2>
+                    
+                    <div class="info-box">
+                        <p class="text-sm text-indigo-800"><strong class="font-semibold">RCEM Guide Tip:</strong> A good QIP starts with a 'problem' or issue, not a solution. "Every system is perfectly designed to deliver the results it does." Use the tools below to deeply understand why the current situation exists.</p>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div>
+                            <label for="qip-title" class="block text-sm font-medium text-gray-700 mb-1">Project Title</label>
+                            <input type="text" id="qip-title" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" value="Developing a HALO (High Acuity, Low Occurrence) Procedures Trolley">
+                        </div>
+                        <div>
+                            <label for="aim-statement" class="block text-sm font-medium text-gray-700 mb-1">Aim Statement (SMART)</label>
+                            <textarea id="aim-statement" rows="4" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                            <p class="guide-text"><strong>Guide:</strong> To reduce the median time taken to gather all necessary equipment for critical procedures (e.g., chest drain, surgical airway, pericardiocentesis) from 15 minutes to under 7 minutes within 4 months, by designing and implementing a standardised, sealed HALO trolley.</p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Problem Analysis Tools</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Fishbone (Ishikawa) Diagram</label>
+                                    <textarea id="fishbone-diagram" class="w-full p-3 border border-gray-300 rounded-lg" rows="6"></textarea>
+                                    <p class="guide-text"><strong>Guide:</strong> Explore root causes. <br><strong>Manpower:</strong> Staff unfamiliar with rare kit; high staff turnover; no designated person to check trolley. <br><strong>Method:</strong> No standard process for gathering kit; items restocked ad-hoc. <br><strong>Materials:</strong> Items missing from various locations; expired stock; multiple brands. <br><strong>Machine (Environment):</strong> Resus bay cluttered; equipment stored in multiple rooms. <br><strong>Measurement:</strong> No data on delays; delays accepted as normal for rare events.</p>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Stakeholder Analysis (Power/Interest Grid)</label>
+                                    <textarea id="stakeholder-analysis" class="w-full p-3 border border-gray-300 rounded-lg" rows="6"></textarea>
+                                    <p class="guide-text"><strong>Guide:</strong> Map your stakeholders to decide how to engage them. <br><strong>High Power, High Interest (Manage Closely):</strong> ED Clinical Lead, Senior Nursing Staff. Involve in all decisions. <br><strong>High Power, Low Interest (Keep Satisfied):</strong> Hospital Manager, Finance Dept. Provide updates on progress and benefits. <br><strong>Low Power, High Interest (Keep Informed):</strong> Junior Doctors, ODPs. Consult for ideas, provide regular feedback. <br><strong>Low Power, Low Interest (Monitor):</strong> Other departments. Minimal effort required.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-section">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Portfolio Note Generator</h3>
+                        <button onclick="generatePortfolioNote(1)" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 font-semibold mb-4">Generate Note for Section 1</button>
+                        <textarea id="portfolio-note-1" class="w-full p-3 border bg-gray-50 border-gray-300 rounded-lg" rows="10" readonly></textarea>
+                         <button onclick="copyToClipboard('portfolio-note-1')" class="mt-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 font-semibold">Copy to Clipboard</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 2: PDSA Cycle -->
+            <div id="page2" class="page">
+                 <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-2 text-gray-900">2. The PDSA Cycle (Model for Improvement)</h2>
+                    <p class="text-gray-600 mb-6">Use this iterative cycle to test changes on a small scale. Remember the '1:1:1 principle' for initial tests: 1 provider, 1 patient, 1 encounter.</p>
+                    
+                    <div class="flex items-center justify-center mb-8 flex-wrap">
+                        <div class="flex items-center m-2">
+                            <div id="step-plan" class="step-circle w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-300 font-bold text-sm">Plan</div>
+                            <div id="line-plan-do" class="step-line w-16 md:w-24 h-1 bg-gray-300"></div>
+                        </div>
+                        <div class="flex items-center m-2">
+                            <div id="step-do" class="step-circle w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-300 font-bold text-sm">Do</div>
+                            <div id="line-do-study" class="step-line w-16 md:w-24 h-1 bg-gray-300"></div>
+                        </div>
+                        <div class="flex items-center m-2">
+                            <div id="step-study" class="step-circle w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-300 font-bold text-sm">Study</div>
+                            <div id="line-study-act" class="step-line w-16 md:w-24 h-1 bg-gray-300"></div>
+                        </div>
+                        <div class="m-2">
+                            <div id="step-act" class="step-circle w-12 h-12 flex items-center justify-center rounded-full border-2 border-gray-300 font-bold text-sm">Act</div>
+                        </div>
+                    </div>
+
+                    <div class="border-b border-gray-200 mb-6">
+                        <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                            <button onclick="showTab('plan')" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Plan</button>
+                            <button onclick="showTab('do')" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Do</button>
+                            <button onclick="showTab('study')" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Study</button>
+                            <button onclick="showTab('act')" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Act</button>
+                        </nav>
+                    </div>
+
+                    <!-- Plan Tab -->
+                    <div id="plan" class="tab-content space-y-6">
+                        <h3 class="text-xl font-semibold text-gray-800">Plan: Design your test</h3>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Driver Diagram (Primary/Secondary Drivers & Interventions)</label>
+                            <textarea id="driver-diagram" class="w-full p-3 border border-gray-300 rounded-lg" rows="6"></textarea>
+                            <p class="guide-text"><strong>Guide:</strong> Aim: Rapid access to procedural kit. <br><strong>Primary Driver 1:</strong> Equipment is AVAILABLE. <br>  - Secondary Driver: Robust stocking system -> Intervention: Create a daily checklist. <br>  - Secondary Driver: Clear re-ordering process -> Intervention: Laminated card with product codes. <br><strong>Primary Driver 2:</strong> Equipment is ACCESSIBLE. <br>  - Secondary Driver: Logical layout -> Intervention: Co-design layout with nurses/ODPs. <br>  - Secondary Driver: Clear labelling -> Intervention: Use picture labels on drawers.</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Measures for this Cycle</label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <textarea id="outcome-measure" class="w-full p-3 border border-gray-300 rounded-lg" rows="3"></textarea>
+                                    <p class="guide-text"><strong>Outcome Measure (Voice of the patient/system):</strong> Time from decision to perform procedure to first action (e.g., skin prep). Measured via simulation or actual events.</p>
+                                </div>
+                                <div>
+                                    <textarea id="process-measure" class="w-full p-3 border border-gray-300 rounded-lg" rows="3"></textarea>
+                                    <p class="guide-text"><strong>Process Measure (Voice of the system):</strong> % of times trolley is correctly stocked at start of shift.</p>
+                                </div>
+                                <div>
+                                    <textarea id="balancing-measure" class="w-full p-3 border border-gray-300 rounded-lg" rows="3"></textarea>
+                                    <p class="guide-text"><strong>Balancing Measure (Look for unintended consequences):</strong> Number of items wasted/discarded; staff satisfaction score with new system.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Do Tab -->
+                    <div id="do" class="tab-content space-y-6" style="display: none;">
+                        <h3 class="text-xl font-semibold text-gray-800">Do: Carry out the test & log events</h3>
+                         <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Implementation Log</label>
+                            <textarea id="implementation-log" class="w-full p-3 border border-gray-300 rounded-lg" rows="6"></textarea>
+                            <p class="guide-text"><strong>Guide:</strong> Date: [e.g., 08/07/2025] <br><strong>Action:</strong> Ran a simulation of a surgical airway in Resus Bay 1. <br><strong>Observations:</strong> Initial confusion from staff who missed the brief. ODP noted that the cricothyroidotomy kit was too bulky for the designated drawer. <br><strong>Problems:</strong> One scalpel was missing. <br><strong>Unexpected events:</strong> The anaesthetic trainee from ICU commented on how useful it was.</p>
+                        </div>
+                    </div>
+
+                    <!-- Study Tab -->
+                    <div id="study" class="tab-content space-y-6" style="display: none;">
+                        <h3 class="text-xl font-semibold text-gray-800">Study: Observe, analyse, and interpret</h3>
+                         <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Data Input (Time to gather equipment in minutes)</label>
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <input type="text" id="data-input" class="flex-grow p-3 border border-gray-300 rounded-lg">
+                                <button onclick="generateChart()" class="bg-indigo-600 text-white px-4 py-3 rounded-lg hover:bg-indigo-700 font-semibold">Generate Run Chart</button>
+                            </div>
+                            <p class="guide-text"><strong>Guide:</strong> Enter comma-separated values, e.g., 12, 11, 13, 8, 7, 7, 6</p>
+                        </div>
+                        <div>
+                            <canvas id="runChart" class="bg-gray-50 p-2 rounded-lg"></canvas>
+                        </div>
+                         <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Analysis & Interpretation (using Run Chart Rules)</label>
+                            <textarea id="analysis-interpretation" class="w-full p-3 border border-gray-300 rounded-lg" rows="6"></textarea>
+                            <p class="guide-text"><strong>Guide:</strong> The run chart shows a clear downward TREND (5+ consecutive points decreasing) after introducing the trolley. <br>A SHIFT (6+ points below the initial median) is evident from week 2 onwards, suggesting a sustainable change. <br>The initial median was 12 mins, the new median is 6.5 mins. <br>Qualitative feedback from staff was mostly positive, but highlighted issues with the drawer layout.</p>
+                        </div>
+                    </div>
+
+                    <!-- Act Tab -->
+                    <div id="act" class="tab-content space-y-6" style="display: none;">
+                         <h3 class="text-xl font-semibold text-gray-800">Act: Decide on the next steps</h3>
+                         <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Based on your findings, what is the next step?</label>
+                            <div id="act-buttons" class="flex space-x-4">
+                                <button class="flex-1 p-4 border rounded-lg text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" onclick="this.classList.toggle('bg-indigo-100')"><strong>Adopt</strong></button>
+                                <button class="flex-1 p-4 border rounded-lg text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" onclick="this.classList.toggle('bg-indigo-100')"><strong>Adapt</strong></button>
+                                <button class="flex-1 p-4 border rounded-lg text-center hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500" onclick="this.classList.toggle('bg-indigo-100')"><strong>Abandon</strong></button>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Plan for Next Cycle / Full Implementation</label>
+                            <textarea id="next-cycle-plan" class="w-full p-3 border border-gray-300 rounded-lg" rows="5"></textarea>
+                            <p class="guide-text"><strong>Guide (Adapt):</strong> Based on feedback, we will swap the airway and line drawers. We will also source a smaller cricothyroidotomy kit. A laminated checklist will be attached to the side of the trolley. We will re-measure the process and balancing measures for 2 more weeks before deciding on a full adoption.</p>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-section">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Portfolio Note Generator</h3>
+                        <button onclick="generatePortfolioNote(2)" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 font-semibold mb-4">Generate Note for Section 2</button>
+                        <textarea id="portfolio-note-2" class="w-full p-3 border bg-gray-50 border-gray-300 rounded-lg" rows="10" readonly></textarea>
+                         <button onclick="copyToClipboard('portfolio-note-2')" class="mt-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 font-semibold">Copy to Clipboard</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 3: Change & Dissemination -->
+            <div id="page3" class="page">
+                <div class="bg-white p-8 rounded-xl shadow-lg space-y-8">
+                    <div>
+                        <h2 class="text-2xl font-bold mb-4 text-gray-900">3. Change Management & Staff Engagement</h2>
+                        <div class="info-box">
+                            <p class="text-sm text-indigo-800"><strong class="font-semibold">RCEM Guide Tip:</strong> Over 70% of changes fail due to lack of staff engagement. Use a structured approach to bring people on the journey with you. Remember 'WIIFM' (What's In It For Me?).</p>
+                        </div>
+                        <div class="space-y-4">
+                            <h3 class="text-lg font-semibold">Diffusion of Innovation Strategy</h3>
+                            <p class="text-gray-600">How will you engage the different groups in your department?</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <textarea id="innovators-strategy" class="w-full p-3 border border-gray-300 rounded-lg" rows="4"></textarea>
+                                    <p class="guide-text"><strong>Innovators & Early Adopters (2.5% + 13.5%):</strong> These are your champions. Involve them in the initial design team. Ask them to help with the 'Do' phase and collect feedback. Their enthusiasm is contagious.</p>
+                                </div>
+                                <div>
+                                    <textarea id="majority-strategy" class="w-full p-3 border border-gray-300 rounded-lg" rows="4"></textarea>
+                                    <p class="guide-text"><strong>Early & Late Majority (34% + 34%):</strong> This is the bulk of your staff. They need to see evidence. Show them the run charts. Highlight the benefits to them (less stress, quicker procedures). Provide simple, clear training sessions.</p>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <textarea id="laggards-strategy" class="w-full p-3 border border-gray-300 rounded-lg" rows="4"></textarea>
+                                    <p class="guide-text"><strong>Laggards (16%):</strong> Don't focus your energy on convincing them. Make the new process the standard and the path of least resistance. Ensure the system is robust so it's harder to do it the 'old way'. Provide clear, mandatory guidelines.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div>
+                        <h2 class="text-2xl font-bold mb-4 text-gray-900">Dissemination Plan</h2>
+                         <div class="space-y-4">
+                            <div>
+                                <input id="dissemination-audience" type="text" class="w-full p-3 border border-gray-300 rounded-lg">
+                                <p class="guide-text"><strong>Target Audience:</strong> e.g., Departmental meeting, regional audit meeting, hospital-wide Patient Safety forum.</p>
+                            </div>
+                            <div>
+                                <textarea id="dissemination-message" class="w-full p-3 border border-gray-300 rounded-lg" rows="3"></textarea>
+                                <p class="guide-text"><strong>Key Message (tailor for each audience):</strong> e.g., For clinicians: 'This trolley saves you 5 minutes per procedure.' For managers: 'This project improves efficiency and patient safety, with minimal cost.'</p>
+                            </div>
+                            <div>
+                                <input id="dissemination-method" type="text" class="w-full p-3 border border-gray-300 rounded-lg">
+                                <p class="guide-text"><strong>Communication Method:</strong> e.g., 15-min presentation, A3 poster for the staff room, article in the hospital newsletter, formal write-up for FRCEM.</p>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="portfolio-section">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Portfolio Note Generator</h3>
+                        <button onclick="generatePortfolioNote(3)" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 font-semibold mb-4">Generate Note for Section 3</button>
+                        <textarea id="portfolio-note-3" class="w-full p-3 border bg-gray-50 border-gray-300 rounded-lg" rows="10" readonly></textarea>
+                         <button onclick="copyToClipboard('portfolio-note-3')" class="mt-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 font-semibold">Copy to Clipboard</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page 4: Resources & Timeline -->
+            <div id="page4" class="page">
+                 <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h2 class="text-2xl font-bold mb-6 text-gray-900">4. Resources & Project Timeline</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Key Resources (from RCEM Guide)</h3>
+                            <ul class="list-disc list-inside space-y-2 text-indigo-600">
+                                <li><a href="https://rcem.ac.uk/quality-improvement/" target="_blank" class="hover:underline">RCEM Quality Improvement Webpage</a></li>
+                                <li><a href="https://www.hqip.org.uk/resource/a-guide-to-quality-improvement-methods/" target="_blank" class="hover:underline">HQIP Guide to QI Methods</a></li>
+                                <li><a href="https://www.health.org.uk/publications/quality-improvement-made-simple" target="_blank" class="hover:underline">Health Foundation - QI Made Simple</a></li>
+                                <li><a href="http://www.squire-statement.org/" target="_blank" class="hover:underline">SQUIRE 2.0 Guidelines for write-up</a></li>
+                                <li><a href="https://www.bmj.com/content/346/bmj.f113" target="_blank" class="hover:underline">BMJ: How to lead a QI Project</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3">Project Timeline (Gantt Chart)</h3>
+                            <textarea id="gantt-chart" class="w-full p-3 border border-gray-300 rounded-lg" rows="8"></textarea>
+                            <p class="guide-text"><strong>Guide:</strong> Plan your 3-6 month project. <br><strong>Month 1:</strong> <br> - Week 1-2: Problem analysis, stakeholder mapping, aim statement. <br> - Week 3-4: Baseline data collection, form project team. <br><strong>Month 2:</strong> <br> - Week 5: PDSA Cycle 1 (design trolley). <br> - Week 6: PDSA Cycle 2 (test prototype). <br> - Week 7-8: PDSA Cycle 3 (adapt design). <br><strong>Month 3:</strong> <br> - Week 9-10: Finalise design, implement fully. <br> - Week 11-12: Collect post-implementation data, analyse results. <br><strong>Month 4+:</strong> <br> - Disseminate findings, write up project.</p>
+                        </div>
+                    </div>
+                    <div class="mt-8">
+                        <h3 class="text-lg font-semibold mb-3">SQUIRE 2.0 Write-up Checklist</h3>
+                        <div class="space-y-2">
+                            <label class="flex items-center"><input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 mr-2"><strong>Title & Abstract:</strong> Clear and concise summary.</label>
+                            <label class="flex items-center"><input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 mr-2"><strong>Introduction:</strong> Problem description, rationale for the work, specific aims.</label>
+                            <label class="flex items-center"><input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 mr-2"><strong>Methods:</strong> Context, Interventions (describe them), Study of the Intervention (PDSA), Measures, Analysis (run charts), Ethical Considerations.</label>
+                            <label class="flex items-center"><input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 mr-2"><strong>Results:</strong> Initial steps, evolution of the intervention, quantitative and qualitative findings.</label>
+                            <label class="flex items-center"><input type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 mr-2"><strong>Discussion:</strong> Summary of key findings, limitations, interpretation (context, unexpected consequences), conclusions and implications.</label>
+                        </div>
+                    </div>
+                     <div class="portfolio-section">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-4">Portfolio Note Generator</h3>
+                        <button onclick="generatePortfolioNote(4)" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 font-semibold mb-4">Generate Final Summary Note</button>
+                        <textarea id="portfolio-note-4" class="w-full p-3 border bg-gray-50 border-gray-300 rounded-lg" rows="10" readonly></textarea>
+                         <button onclick="copyToClipboard('portfolio-note-4')" class="mt-2 bg-gray-200 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-300 font-semibold">Copy to Clipboard</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let currentChart;
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            document.querySelectorAll('.nav-button').forEach(button => button.classList.remove('text-indigo-600', 'border-indigo-600', 'border-b-2'));
+            const activeButton = document.querySelector(`.nav-button[onclick="showPage('${pageId}')"]`);
+            activeButton.classList.add('text-indigo-600', 'border-indigo-600', 'border-b-2');
+            if (pageId === 'page2') {
+                showTab('plan');
+            }
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+            document.getElementById(tabId).style.display = 'block';
+            document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
+            updateStepper(tabId);
+        }
+        
+        function updateStepper(activeTab) {
+            const steps = ['plan', 'do', 'study', 'act'];
+            const activeIndex = steps.indexOf(activeTab);
+            steps.forEach((step, index) => {
+                const circle = document.getElementById(`step-${step}`);
+                const line = document.getElementById(`line-${steps[index-1]}-${step}`);
+                if (index <= activeIndex) circle.classList.add('active');
+                else circle.classList.remove('active');
+                if (line) {
+                    if (index <= activeIndex) line.classList.add('active');
+                    else line.classList.remove('active');
+                }
+            });
+        }
+
+        function generateChart() {
+            const dataInput = document.getElementById('data-input').value;
+            const dataPoints = dataInput.split(',').map(Number).filter(n => !isNaN(n) && n !== null);
+
+            if (dataPoints.length === 0) {
+                // In a real app, use a modal instead of alert.
+                console.error('Please enter valid, comma-separated numerical data.');
+                return;
+            }
+
+            const labels = dataPoints.map((_, i) => `Data Point ${i + 1}`);
+            const total = dataPoints.reduce((acc, val) => acc + val, 0);
+            const mean = total / dataPoints.length;
+            const meanLine = Array(dataPoints.length).fill(mean);
+            
+            const ctx = document.getElementById('runChart').getContext('2d');
+            
+            if (currentChart) {
+                currentChart.destroy();
+            }
+
+            currentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Time to Gather Equipment (mins)',
+                        data: dataPoints,
+                        borderColor: 'rgb(79, 70, 229)',
+                        backgroundColor: 'rgba(79, 70, 229, 0.1)',
+                        fill: true,
+                        tension: 0.1
+                    }, {
+                        label: 'Mean',
+                        data: meanLine,
+                        borderColor: 'rgb(234, 88, 12)',
+                        borderDash: [5, 5],
+                        fill: false,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Minutes'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Run Chart of Equipment Gathering Time'
+                        },
+                        legend: {
+                            position: 'top',
+                        },
+                    }
+                }
+            });
+        }
+        
+        function generatePortfolioNote(pageNumber) {
+            let note = "";
+            const title = document.getElementById('qip-title').value || "Not specified";
+            const aim = document.getElementById('aim-statement').value || "Not specified";
+            
+            if (pageNumber === 1) {
+                const fishbone = document.getElementById('fishbone-diagram').value || "Not specified";
+                const stakeholders = document.getElementById('stakeholder-analysis').value || "Not specified";
+                note = `**RCEM QIP Portfolio Entry: Section 1 - Project Setup & Analysis**\n\n`;
+                note += `**Project Title:** ${title}\n\n`;
+                note += `**1. Introduction & Rationale (The Problem):**\nThis project was initiated to address delays and inefficiencies in preparing for High Acuity, Low Occurrence (HALO) procedures in the Emergency Department. Anecdotal evidence and staff feedback suggested that gathering the necessary, rarely-used equipment was often chaotic and time-consuming, potentially impacting patient safety and causing significant stress for the clinical team.\n\n`;
+                note += `**2. Specific Aims:**\nThe aim of this QIP was: ${aim}\n\n`;
+                note += `**3. Methods - Context & Problem Analysis:**\nTo understand the root causes of the problem, a Fishbone (Ishikawa) diagram was utilised. The key findings were:\n${fishbone}\n\n`;
+                note += `A stakeholder analysis was also performed to guide engagement:\n${stakeholders}\n\nThis initial analysis highlighted that the problem was systemic, involving issues with equipment storage, staff knowledge, and a lack of standardised processes.`;
+            } else if (pageNumber === 2) {
+                const driver = document.getElementById('driver-diagram').value || "Not specified";
+                const outcome = document.getElementById('outcome-measure').value || "Not specified";
+                const process = document.getElementById('process-measure').value || "Not specified";
+                const balancing = document.getElementById('balancing-measure').value || "Not specified";
+                const log = document.getElementById('implementation-log').value || "Not specified";
+                const analysis = document.getElementById('analysis-interpretation').value || "Not specified";
+                const nextPlan = document.getElementById('next-cycle-plan').value || "Not specified";
+
+                note = `**RCEM QIP Portfolio Entry: Section 2 - Methodology & Interventions (PDSA Cycles)**\n\n`;
+                note += `**Project Title:** ${title}\n\n`;
+                note += `**1. Methods - Intervention Design & Study:**\nThe Model for Improvement, utilising Plan-Do-Study-Act (PDSA) cycles, was chosen as the core methodology for this QIP. This allowed for iterative testing of changes on a small scale.\n\n`;
+                note += `**PDSA Cycle 1 - PLAN:**\nA driver diagram was developed to identify key areas for intervention:\n${driver}\n\nMeasures for this cycle were defined as:\n- Outcome: ${outcome}\n- Process: ${process}\n- Balancing: ${balancing}\n\n`;
+                note += `**PDSA Cycle 1 - DO:**\nThe following actions were taken:\n${log}\n\n`;
+                note += `**PDSA Cycle 1 - STUDY:**\nData was collected and analysed. The key findings were:\n${analysis}\n\nA run chart of the outcome measure was generated to visualise the impact of the intervention.\n\n`;
+                note += `**PDSA Cycle 1 - ACT:**\nBased on the study phase, the decision was made to:\n${nextPlan}`;
+            } else if (pageNumber === 3) {
+                 const innovators = document.getElementById('innovators-strategy').value || "Not specified";
+                 const majority = document.getElementById('majority-strategy').value || "Not specified";
+                 const laggards = document.getElementById('laggards-strategy').value || "Not specified";
+                 const audience = document.getElementById('dissemination-audience').value || "Not specified";
+                 const message = document.getElementById('dissemination-message').value || "Not specified";
+                 const method = document.getElementById('dissemination-method').value || "Not specified";
+
+                note = `**RCEM QIP Portfolio Entry: Section 3 - Change Management & Dissemination**\n\n`;
+                note += `**Project Title:** ${title}\n\n`;
+                note += `**1. Change Management & Staff Engagement:**\nRecognising that successful implementation depends on staff buy-in, a strategy based on the 'Diffusion of Innovation' theory was developed:\n- Innovators & Early Adopters: ${innovators}\n- Early & Late Majority: ${majority}\n- Laggards: ${laggards}\n\nThis involved targeted communication, using data to persuade, and making champions of early supporters.\n\n`;
+                note += `**2. Dissemination:**\nTo ensure the learning from this project was shared, a dissemination plan was created:\n- Target Audience(s): ${audience}\n- Key Message(s): ${message}\n- Communication Method(s): ${method}`;
+            } else if (pageNumber === 4) {
+                const timeline = document.getElementById('gantt-chart').value || "Not specified";
+                note = `**RCEM QIP Portfolio Entry: Final Summary**\n\n`;
+                note += `**Project Title:** ${title}\n\n`;
+                note += `**1. Summary of Project:**\nThis Quality Improvement Project aimed to ${aim}. The project identified key systemic issues through tools like Fishbone analysis and engaged stakeholders effectively. Using the Model for Improvement, several PDSA cycles were conducted to test and refine the HALO trolley concept. The intervention resulted in a measurable improvement in the primary outcome measure, as demonstrated by run chart analysis. The change was embedded through a targeted staff engagement strategy.\n\n`;
+                note += `**2. Project Timeline:**\nThe project followed this approximate timeline:\n${timeline}\n\n`;
+                note += `**3. Discussion & Reflection:**\nThe main strength of this project was the use of iterative PDSA cycles, which allowed for adaptation based on real-world feedback. A key challenge was engaging all staff groups, which was addressed by using a multi-faceted communication strategy. The project successfully demonstrated that a standardised approach can significantly improve efficiency and reduce stress during high-acuity, low-occurrence events. Future work could involve spreading this model to other critical care areas.`;
+            }
+
+            document.getElementById(`portfolio-note-${pageNumber}`).value = note;
+        }
+
+        function copyToClipboard(elementId) {
+            const textarea = document.getElementById(elementId);
+            textarea.select();
+            // document.execCommand('copy') is used for compatibility in sandboxed environments
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+            }
+            window.getSelection().removeAllRanges();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            showPage('page1');
+        });
+    </script>
+
+</body>
+</html>
